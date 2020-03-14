@@ -13,6 +13,20 @@ Rails.application.routes.draw do
     end
   end
   
+  get '/users/:id/likes', to: 'users#favoritings'
+  resources :users, only: [:index, :show, :new, :create] do
+    member do
+      get :favoritings
+    end
+  end
+  
+  resources :microposts, only: [:index, :show, :new, :create] do
+    member do
+      get :favoriters
+    end
+  end
+  
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
+  resources :favorites, only: [:create, :destroy]
 end
