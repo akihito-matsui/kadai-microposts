@@ -13,10 +13,10 @@ Rails.application.routes.draw do
     end
   end
   
-  get '/users/:id/likes', to: 'users#favoritings'
+  get '/users/:id/likes', to: 'users#likes'
   resources :users, only: [:index, :show, :new, :create] do
     member do
-      get :favoritings
+      get :likes
     end
   end
   
